@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.actions.act_window" id="action_visitor_form">
+            <field name="name">Visitor</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">visitor1</field>
+            <field name="view_type">form</field>
+        </record>
+
+        <record model="ir.ui.view" id="view_visitor1_tree">
+            <field name="name">visitor1.tree</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="employee_number"/>
+                </tree>
+            </field>
+            <field name="model">visitor1</field>
+        </record>
+
+        <record id="view_visitor2_form" model="ir.ui.view">
+            <field name="name">visitor2.form</field>
+            <field name="model">visitor1</field>
+            <field name="arch" type="xml">
+                <form string="Sync Database">
+                    <header>
+                        <button name="button1" string="Confirm" type="object" class="oe_highlight" />
+                        <button name="button2" string="Approve" type="object" class="oe_highlight" />
+                        <field name="status" widget="statusbar"/>
+                    </header>
+                <sheet>
+                            Name:<field name="name" placeholder="Enter Name"/>
+
+                            ID:<field name="employee_number" placeholder="Enter ID Number"/>
+                            Department:<field name="department" placeholder="Enter Department"/>
+                            <field name="visit">
+                                <tree editable="table_id">
+                                <field name="visit_date"/>
+                                <field name="time_in" widget="float_time"/>
+                                <field name="time_out" widget="float_time"/>
+                                <field name="client_company"/>
+                                <field name="client_contact"/>
+                                <field name="purpose"/>
+                            </tree>
+                        </field>
+                </sheet>
+                <!-- <footer>
+                        <center>
+                            Some place where you can add data
+                        </center>
+                    </footer> -->
+                </form>
+            </field>
+        </record>
+
+    <!--    <record id="view_visitor3_form" model="ir.ui.view">
+            <field name="name">visitor3.form</field>
+            <field name="model">visitor3</field>
+            <field name="arch" type="xml">
+                <form string="Sync Database">
+                <sheet>
+                        <field name="">
+                            <tree editable="center">
+                                <field name="purpose" placeholder="Purpose Of Visitation"/>
+                            </tree>
+                        </field>
+                </sheet>
+                </form>
+
+            </field>
+        </record> -->
+
+
+        <menuitem
+            id="visitor_menu"
+            name="Visitor"
+            sequence="5"/>
+        <menuitem
+            id="visitor_sub_menu"
+            parent="visitor_menu"
+            name="Visitor Report"
+            sequence="5"/>
+        <menuitem
+            action="action_visitor_form"
+            id="menu_visitor_form"
+            parent="visitor_sub_menu"
+            sequence="5"/>
+
+    </data>
+</openerp>
